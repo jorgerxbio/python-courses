@@ -22,6 +22,7 @@ while lifes > 0:
             user_number = int(input("Enter a number between 0 and 100: "))
     else:
         user_number = int(input("Enter a number between 0 and 100: "))
+
 if lifes > 0:
     print(f"Congratulations you found the magic number ({magic_number})")
 else:
