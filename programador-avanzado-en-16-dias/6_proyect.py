@@ -2,7 +2,7 @@ import os
 import shutil
 from pathlib import Path
 
-RECIPE_BOOK_PATH = Path(Path.home(), "Recetas")
+RECIPE_BOOK_PATH = Path(Path.home(), "Data", "Recetas")
 
 
 # functions
