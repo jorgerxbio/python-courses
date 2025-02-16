@@ -160,7 +160,7 @@ def customer_information(customer_account_number):
         return information
 
 
-def validate_client_existend(account_number):
+def validate_client_existence(account_number):
     customers = read_customers()
     if len(customers) != 0:
         for customer in customers:
@@ -173,36 +173,26 @@ def validate_client_existend(account_number):
 
 def customer_informations():
     customers = read_customers()
-    information = ""
-    if len(customers) != 0:
-        for custom in customers:
-            information += f"\n | Customer {custom.account_number} |\n"
-            information += str(custom)
-    else:
-        information += "There are not customers"
+    if not customers:
+        return "There are no customers"
 
-    return information
-
-
-def display_options():
-    print("1. Create customer\n" "2. Enter account\n" "3. Manager\n" "4. Get out\n")
+    information = []
+    for customer in customers:
+        information.append(f"\n | Customer {customer.account_number} |")
+        information.append(str(customer))
+    return "\n".join(information)
 
 
-def display_menu_options():
-    print(
-        "1. Deposite\n"
-        "2. Withdraw\n"
-        "3. Information\n"
-        "4. Remove account\n"
-        "5. Get out"
-    )
+def display_menu(menu_type):
+    if menu_type == "main":
+        print("1. Create customer\n2. Enter account\n3. Manager\n4. Get out")
+    elif menu_type == "account":
+        print("1. Deposit\n2. Withdraw\n3. Information\n4. Remove account\n5. Get out")
+    elif menu_type == "manager":
+        print("1. Information\n2. Remove all accounts\n3. Get out")
 
 
-def display_manager_menu_options():
-    print("1. Information\n" "2. Remove all accounts\n" "3. Get out\n")
-
-
-def select_clear():
+def clean_screen():
     # Wait for the user to press enter
     input("Press Enter to continue...")
     # Clear the console
@@ -210,12 +200,10 @@ def select_clear():
 
 
 # Acount modification
-
-
 def start():
     option = 0
     while option != "4":
-        display_options()
+        display_menu("main")
         option = input("What you want to do? ")
         match option:
             case "1":
@@ -223,24 +211,24 @@ def start():
                 print(
                     f"Customer {customer.name} was added with {customer.account_number} account_number"
                 )
-                select_clear()
+                clean_screen()
 
             case "2":
                 account_number = input("Enter your account number: ")
-                if validate_client_existend(account_number) == True:
+                if validate_client_existence(account_number):
                     # Clear the console
-                    os.system("cls" if os.name == "nt" else "clear")
+                    clean_screen()
                     menu(account_number)
                 else:
                     print("This account doesn't exist")
-                    select_clear()
+                    clean_screen()
             case "3":
                 manager_menu()
-                select_clear()
+                clean_screen()
 
             case "4":
                 print("Get out")
-                select_clear()
+                clean_screen()
                 break
 
             case _:
@@ -250,27 +238,27 @@ def start():
 def menu(account_number):
     option = 0
     while option != 5:
-        display_menu_options()
+        display_menu("account")
         option = input("What you want to do? ")
 
         match option:
             case "1":
                 amount = float(input("Enter a amount to deposit: "))
                 deposit_amount(account_number, amount)
-                select_clear()
+                clean_screen()
 
             case "2":
                 amount = float(input("Enter a amount to withdraw: "))
                 withdraw_amount(account_number, amount)
-                select_clear()
+                clean_screen()
 
             case "3":
                 print(customer_information(account_number))
-                select_clear()
+                clean_screen()
 
             case "4":
                 remove_customer(account_number)
-                select_clear()
+                clean_screen()
                 break
 
             case "5":
@@ -283,16 +271,16 @@ def menu(account_number):
 def manager_menu():
     option = 0
     while option != 3:
-        display_manager_menu_options()
+        display_menu("manager")
         option = input("Enter a option: ")
         match option:
             case "1":
                 print(customer_informations())
-                select_clear()
+                clean_screen()
 
             case "2":
                 remove_customers()
-                select_clear()
+                clean_screen()
 
             case "3":
                 break
