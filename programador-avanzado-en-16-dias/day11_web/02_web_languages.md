@@ -1,12 +1,8 @@
-# How a page give information to your browser?
-
-All things in a page is possible to pass to objects in python. And all code of web is writing usin tags.
-
 ## HTML
 
 This is the main language for page code. It is used to create the content and structure of a page, such as text, titles, images, and more.
 
-```HTML
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +19,7 @@ This is the main language for page code. It is used to create the content and st
 
 CSS tands for Cascading Style Sheets, a stylesheet language used to describe the presentation of a document written in HTML or XML, including XML dialects such as SVG, MathML, or XHTML. It is used for style and design like font, size font and position of elements.
 
-```HTML
+```css
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +31,6 @@ CSS tands for Cascading Style Sheets, a stylesheet language used to describe the
     <p id="est1">This is my first paragraph</p> # Another css element
   </body>
 </html>
-
 ```
 
 File css:
@@ -56,9 +51,3 @@ File css:
 ## Javscript
 
 It is used for interactive elements.
-
-# Libraries
-
-- beautifulsoup4
-- lxml
-- requests
